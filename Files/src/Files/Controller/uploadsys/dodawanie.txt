@@ -1,0 +1,17 @@
+<?php
+
+function upload($argv)
+ {
+	$result=0;
+	unset($argv[0]);
+	foreach($argv as $arg)
+	{
+		 $result = $result + (int)$arg;	
+	} 
+	
+	return $result;
+}
+
+//echo upload($argv).PHP_EOL;
+
+?>

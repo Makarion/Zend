@@ -1,0 +1,5 @@
+'nazwa' => $file->nazwa,
+             'typ'  => $file->typ,
+             'rozmiar' => $file->rozmiar,
+             'content' => $file->content
+

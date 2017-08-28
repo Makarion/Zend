@@ -1,0 +1,42 @@
+<script type="text/javascript" src="scripts/script.js"></script>
+ 
+<?php 
+ 
+ //error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
+ //ini_set("display_errors", 'OFF');
+ //error_reporting(0);
+ $title = 'My files';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p></p>
+ <table class="table">
+ <tr>
+     <th>Nazwa</th>
+     <th>Typ</th>
+     <th>Rozmiar</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($files as $file) : ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($file->nazwa);?></td>
+     <td><?php echo $this->escapeHtml($file->typ);?></td>
+     <td><?php echo $this->escapeHtml($file->rozmiar);?></td>
+     <td><a href="<?php echo $this->url('files', array('action'=>'download', 'id' => $file->id));?>">Download</a></td>
+ <?php endforeach; ?>
+</tr>
+</table>
+<table class="table2">
+<!--<tr><th><span><input type="text" id="search"/></span><span><input type="button" id="get"  value="Download" onclick=""/></span></th></tr>
+-->
+<tr><th><a href="<?php echo $this->url('files', array('action'=>'add', 'id' => $file->id));?>">Upload</a></th>
+</tr>
+<tr><th>
+<?php
+echo $this->form()->openTag($searchform);
+echo $this->formRow($searchform->get('title'));
+echo $this->formRow($searchform->get('submit'));
+echo $this->form()->closeTag();
+?>
+</th></tr>
+</table>

@@ -1,0 +1,22 @@
+<?php
+
+$title = "Gimme dat bwoooy";
+$this->headTitle($title)
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+// filename : module/Test/view/test/profile/add.phtml
+$form = $this->form;
+$form->setAttribute('action',$this->url('files', array('action' => 'add'))); 
+$form->prepare();
+ 
+echo $this->form()->openTag($form);
+//echo $this->formHidden($form->get('id'));
+//echo $this->formHidden($form->get('nazwa'));
+//echo $this->formHidden($form->get('typ'));
+//echo $this->formHidden($form->get('rozmiar'));
+echo $this->formRow($form->get('fileupload'));
+echo $this->formRow($form->get('submit'));
+echo $this->form()->closeTag();
+?>

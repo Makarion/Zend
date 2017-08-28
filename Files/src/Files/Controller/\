@@ -1,0 +1,50 @@
+<?php
+
+ namespace Files\Controller;
+
+ use Zend\Mvc\Controller\AbstractActionController;
+ use Zend\View\Model\ViewModel;
+
+ class FilesController extends AbstractActionController
+ {
+     protected $filesTable;
+     public function indexAction()
+     {
+	 return new ViewModel(array(
+             'files' => $this->getFilesTable()->fetchAll(),
+         ));
+     }
+
+     public function downloadAction()
+     {
+	if (userHasNoPermissions) 
+	{
+       		 $this->view->msg = 'This file cannot be downloaded!';
+       		 $this->_forward('error', 'download');
+       		 return FALSE;
+        }	
+
+	header('Content-Type: text/plain');
+	header('Content-Disposition: attachment; filename="plik1.txt"');
+        readfile(__DIR__ . '/pliki/plik1.txt');
+
+//	 disable the view ... and perhaps the layout
+ 
+	$this->view->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);			
+	
+     }
+
+     public function errorAction()
+     {
+     }
+     
+     public function getFilesTable()
+     {
+         if (!$this->filesTable) {
+             $sm = $this->getServiceLocator();
+             $this->filesTable = $sm->get('Files\Model\FilesTable');
+         }
+         return $this->filesTable;
+     }
+ }
