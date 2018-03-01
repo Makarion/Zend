@@ -43,7 +43,7 @@
 
      public function addAction()
      {
-	$connection = pg_connect('host=localhost dbname=tutorial user=makarewk password=peperoni08') or die('No i chuj');
+	$connection = pg_connect('host=localhost dbname=tutorial user= password=') or die('No i chuj');
 	$form = new UploadForm();
 	
 	$request = $this->getRequest();
